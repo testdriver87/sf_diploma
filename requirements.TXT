@@ -1,4 +1,5 @@
 streamlit
+pycaret
 pycaret.regression
 pandas
 numpy
