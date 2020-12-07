@@ -42,7 +42,7 @@ def run():
 
         if st.button("Predict"):
             output = predict(model=model, input_df=input_df)
-            output = '$' + str(output)
+            output = str(output)
 
         st.success('The output is {}'.format(output))
 
