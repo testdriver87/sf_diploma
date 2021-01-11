@@ -1,9 +1,9 @@
-from pycaret.classification import load_model, predict_model
+from pycaret.regression import load_model, predict_model
 import streamlit as st
 import pandas as pd
 import numpy as np
 
-model = load_model('rds_diploma_061220')
+model = load_model('rds_diploma')
 
 def predict(model, input_df):
     predictions_df = predict_model(estimator=model, data=input_df)
@@ -19,32 +19,33 @@ def run():
     st.title("Heart Failure Prediction")
 
     if add_selectbox == 'Online':
+        
+        col1, col2 = st.beta_columns(2)
+        
+        with col1:
+            
+            age = st.number_input('Age', min_value=1, max_value=100, value=60)
+            
+            ejf = st.number_input('Ejection Fraction', min_value=0, max_value=100, value=35)
+            scr = st.number_input('Serum Creatinine', min_value=0, max_value=10, value=2.5)
+            
+        with col2:
+            
+            anm = st.selectbox('Anaemia', ['Yes', 'No'])
+            hbp = st.selectbox('High Blood_Pressure', ['Yes', 'No'])
 
-        age = st.number_input('Age', min_value=1, max_value=100, value=60)
-        anaemia = st.selectbox('Anaemia', ['0', '1'])
-        creatinine_phosphokinase = st.number_input('Creatinine Phosphokinase', min_value=0, max_value=10000, value=582)
-        diabetes = st.selectbox('Diabetes', ['0', '1'])
-        ejection_fraction = st.number_input('Ejection Fraction', min_value=0, max_value=100, value=35)
-        high_blood_pressure = st.selectbox('High Blood_Pressure', ['0', '1'])
-        platelets = st.number_input('Platelets', min_value=0, max_value=1000000, value=250000)
-        serum_creatinine = st.number_input('Serum Creatinine', min_value=0, max_value=10, value=1)
-        serum_sodium = st.number_input('Serum Sodium', min_value=100, max_value=150, value=135)
-        sex = st.selectbox('Sex', ['0', '1'])
-        smoking = st.selectbox('Smoking', ['0', '1'])
-        time = st.number_input('Time', min_value=0, max_value=300, value=200)
 
         output = ""
 
-        input_dict = {'age' : age, 'anaemia' : anaemia, 'creatinine_phosphokinase' : creatinine_phosphokinase, 'diabetes' : diabetes, 
-                      'ejection_fraction' : ejection_fraction, 'high_blood_pressure' : high_blood_pressure, 'platelets' : platelets, 
-                      'serum_creatinine' : serum_creatinine, 'serum_sodium' : serum_sodium, 'sex' : sex, 'smoking' : smoking, 'time' : time}
+        input_dict = {'age' : age, 'anm' : anm, 'ejf' : ejf, 'hbp' : hbp, 'scr' : scr}
         input_df = pd.DataFrame([input_dict])
 
         if st.button("Predict"):
             output = predict(model=model, input_df=input_df)
-            output = '$' + str(output)
+            output = output.apply(lambda x: 'Присутствует' if x = 'Yes' else 'Отсуствует')
+            output = str(output)
 
-        st.success('The output is {}'.format(output))
+        st.success('{} вероятность смерти пациента '.format(output))
 
     if add_selectbox == 'Batch':
 
