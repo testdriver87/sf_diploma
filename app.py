@@ -27,7 +27,7 @@ def run():
             age = st.number_input('Age', min_value=1, max_value=100, value=60)
             
             ejf = st.number_input('Ejection Fraction', min_value=0, max_value=100, value=35)
-            scr = st.number_input('Serum Creatinine', min_value=0, max_value=10, value=2,5)
+            scr = st.number_input('Serum Creatinine', min_value=0, max_value=10, value=2)
             
         with col2:
             
