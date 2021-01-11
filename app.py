@@ -38,7 +38,9 @@ def run():
 
         if st.button("Predict"):
             output = predict(model=model, input_df=input_df)
-            outstr='Присутствует' if output == 1 else outstr='Отсуствует'
+            if output == 1:
+                outstr='Присутствует' 
+            else outstr='Отсуствует'
 
         st.success('{} вероятность смерти пациента '.format(outstr))
 
@@ -48,7 +50,7 @@ def run():
 
         if file_upload is not None:
             data = pd.read_csv(file_upload)
-            predictions = predict_model(estimator=model,data=data)
+            predictions = predict_model(estimator=model, data=data)
             st.write(predictions)
 
 if __name__ == '__main__':
