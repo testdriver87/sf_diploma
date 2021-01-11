@@ -40,7 +40,8 @@ def run():
             output = predict(model=model, input_df=input_df)
             if output == 1:
                 outstr='Присутствует' 
-            else outstr='Отсуствует'
+            else:
+                outstr='Отсуствует'
 
         st.success('{} вероятность смерти пациента '.format(outstr))
 
