@@ -38,10 +38,9 @@ def run():
 
         if st.button("Predict"):
             output = predict(model=model, input_df=input_df)
-            'Присутствует' if output == 1 else 'Отсуствует'
-            output = str(output)
+            outstr='Присутствует' if output == 1 else outstr='Отсуствует'
 
-        st.success('{} вероятность смерти пациента '.format(output))
+        st.success('{} вероятность смерти пациента '.format(outstr))
 
     if add_selectbox == 'Batch':
 
