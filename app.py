@@ -23,17 +23,13 @@ def run():
         col1, col2 = st.beta_columns(2)
         
         with col1:
-            
             age = st.number_input('Age', min_value=1, max_value=100, value=60)
-            
-            ejf = st.number_input('Ejection Fraction', min_value=0, max_value=100, value=35)
-            scr = st.number_input('Serum Creatinine', min_value=0, max_value=10, value=2)
-            
-        with col2:
-            
             anm = st.selectbox('Anaemia', ['Yes', 'No'])
             hbp = st.selectbox('High Blood_Pressure', ['Yes', 'No'])
-
+            
+        with col2: 
+            ejf = st.number_input('Ejection Fraction', min_value=0, max_value=100, value=35)
+            scr = st.number_input('Serum Creatinine', min_value=0, max_value=10, value=2)
 
         output = ""
 
@@ -42,7 +38,7 @@ def run():
 
         if st.button("Predict"):
             output = predict(model=model, input_df=input_df)
-            output = output.apply(lambda x: 'Присутствует' if x == 'Yes' else 'Отсуствует')
+            output = output.apply(lambda x: 'Присутствует' if x == 1 else 'Отсуствует')
             output = str(output)
 
         st.success('{} вероятность смерти пациента '.format(output))
