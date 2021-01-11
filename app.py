@@ -38,7 +38,7 @@ def run():
 
         if st.button("Predict"):
             output = predict(model=model, input_df=input_df)
-            'Присутствует' if output = 1 else 'Отсуствует'
+            'Присутствует' if output == 1 else 'Отсуствует'
             output = str(output)
 
         st.success('{} вероятность смерти пациента '.format(output))
