@@ -38,6 +38,7 @@ def run():
 
         if st.button("Predict"):
             output = predict(model=model, input_df=input_df)
+            outstr = ''
             if output == 1:
                 outstr='Присутствует' 
             else:
