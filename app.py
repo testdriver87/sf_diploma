@@ -24,7 +24,11 @@ def run():
         
         with col1:
             age = st.number_input('Age', min_value=1, max_value=100, value=60)
-            anm = st.selectbox('Anaemia', ['Yes', 'No'])
+            anmbox = st.checkbox('Anaemia')
+            if anmbox:
+                anm = 'Yes'
+            else:
+                anm = 'No'
             hbp = st.selectbox('High Blood_Pressure', ['Yes', 'No'])
             
         with col2: 
