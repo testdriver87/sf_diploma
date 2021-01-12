@@ -29,7 +29,11 @@ def run():
                 anm = 'Yes'
             else:
                 anm = 'No'
-            hbp = st.selectbox('High Blood_Pressure', ['Yes', 'No'])
+            hbpbox = st.checkbox('High Blood_Pressure')
+            if anmbox:
+                hbp = 'Yes'
+            else:
+                hbp = 'No'    
             
         with col2: 
             ejf = st.number_input('Ejection Fraction', min_value=0, max_value=100, value=35)
