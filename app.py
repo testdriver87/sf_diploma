@@ -24,7 +24,7 @@ def run():
         
         with col1:
             st.info('Возраст пациента')
-            age = st.number_input(min_value=1, max_value=100, value=60)
+            age = st.number_input('', min_value=1, max_value=100, value=60)
             st.info('Болен ли пациент анемией')
             anmbox = st.checkbox('Anaemia')
             if anmbox:
@@ -33,13 +33,15 @@ def run():
                 anm = 'No'
             st.info('Болен ли пациент гипертонией')
             hbpbox = st.checkbox('High Blood_Pressure')
-            if anmbox:
+            if hbpbox:
                 hbp = 'Yes'
             else:
                 hbp = 'No'    
             
-        with col2: 
+        with col2:
+            st.info('Процент крови, покидающей сердце при каждом сокращении')
             ejf = st.number_input('Ejection Fraction', min_value=0, max_value=100, value=35)
+            st.info('Уровень креатинина в сыворотке, согласно анализу крови')
             scr = st.number_input('Serum Creatinine', min_value=0, max_value=10, value=2)
 
         output = ""
@@ -50,9 +52,9 @@ def run():
         if st.button("Predict"):
             output = predict(model=model, input_df=input_df)
             if output == 1:
-                st.success('Присутствует вероятность смерти пациента')
+                st.success('На данный момент ПРИСУТСТВУЕТ вероятность смерти пациента')
             else:
-                st.success('Отсутствует вероятность смерти пациента')
+                st.success('На данный момент ОТСУТСТВУЕТ вероятность смерти пациента')
 
     if add_selectbox == 'Batch':
 
