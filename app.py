@@ -23,7 +23,9 @@ def run():
         col1, col2 = st.beta_columns(2)
         
         with col1:
+            st.info('Возраст пациента')
             age = st.number_input('Age', min_value=1, max_value=100, value=60)
+            st.info('Болеет ли пациент анемией')
             anmbox = st.checkbox('Anaemia')
             if anmbox:
                 anm = 'Yes'
