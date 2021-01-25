@@ -26,7 +26,7 @@ https://share.streamlit.io/testdriver87/sf_diploma/main/app.py
 
 https://github.com/testdriver87/sf_diploma/blob/main/PANDAS_PROFILING_REPORT.html
 
-https://github.com/testdriver87/sf_diploma/blob/main/PANDAS_PROFILING_REPORT.html
+https://github.com/testdriver87/sf_diploma/blob/main/SWEETVIZ_REPORT.html
 
 Для предварительной оценки важности признаков я использовал пакет [LOFO](https://github.com/aerdem4/lofo-importance). Он  вычисляет важность набора признаков на основе выбранной метрики для модели выбора, итеративно удаляя каждый признак из набора и оценивая производительность модели с помощью схемы проверки выбора, основанной на выбранной метрике.
 
