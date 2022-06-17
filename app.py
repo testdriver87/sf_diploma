@@ -7,8 +7,7 @@ model = load_model('rds_diploma')
 
 def predict(model, input_df):
     predictions_df = predict_model(estimator=model, data=input_df)
-    predictions = predictions_df['Label'][0]
-    return predictions
+    return predictions_df['Label'][0]
 
 def run():
 
@@ -21,23 +20,16 @@ def run():
     if add_selectbox == 'Online':
         
         col1, col2 = st.beta_columns(2)
-        
+
         with col1:
             st.info('Возраст пациента')
             age = st.number_input('Age', min_value=1, max_value=100, value=60)
             st.info('Болен ли пациент анемией')
             anmbox = st.checkbox('Anaemia')
-            if anmbox:
-                anm = 'Yes'
-            else:
-                anm = 'No'
+            anm = 'Yes' if anmbox else 'No'
             st.info('Болен ли пациент гипертонией')
             hbpbox = st.checkbox('High Blood_Pressure')
-            if hbpbox:
-                hbp = 'Yes'
-            else:
-                hbp = 'No'    
-            
+            hbp = 'Yes' if hbpbox else 'No'
         with col2:
             st.info('Процент крови, покидающей сердце при каждом сокращении')
             ejf = st.number_input('Ejection Fraction', min_value=0, max_value=100, value=35)
